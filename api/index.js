@@ -24,7 +24,7 @@ app.use("/uploads", express.static(__dirname + "/uploads"));
 const PORT = process.env.PORT||4000;
 
 mongoose.connect(
-  "mongodb+srv://mernblog:78sc92j5ruWAn2R3@cluster0.sfqglpn.mongodb.net/"
+  process.env.CONNECTION_URL
 );
 
 app.post("/register", async (req, res) => {
