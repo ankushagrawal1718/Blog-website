@@ -1,6 +1,6 @@
 import "./App.css";
-import Post from "./Post";
-import Header from "./Header";
+// import Post from "./Post";
+// import Header from "./Header";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./layout";
 import IndexPage from "./pages/IndexPage";
@@ -24,7 +24,7 @@ function App() {
           <Route path ="/edit/:id" element={<EditPost/>}/>
         </Route>
       </Routes>
-    </UserContextProvider>
+     </UserContextProvider>
   );
 }
 

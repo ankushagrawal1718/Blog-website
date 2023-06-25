@@ -72,10 +72,10 @@ app.get("/profile", (req, res) => {
     if (err) throw err;
     res.json(info);
   });
-});
+}); 
 
-app.post("/logout", (req, res) => {
-  res.cookie("token", "").json("ok");
+app.post('/logout', (req,res) => {
+  res.cookie('token', '').json('ok');
 });
 
 app.post("/post", uploadMiddleware.single("file"), async (req, res) => {

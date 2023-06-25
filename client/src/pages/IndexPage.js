@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Post from "../Post";
 
-const IndexPage = () => {
+export default function IndexPage(){
   const [posts,setPosts] = useState([]);
 
   useEffect(()=>{
@@ -21,4 +21,3 @@ const IndexPage = () => {
   )
 }
 
-export default IndexPage;
