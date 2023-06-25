@@ -13,7 +13,7 @@ const PostPage = () => {
     fetch(`http://localhost:4000/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
-      });
+      }); 
     });
   }, []);
   if (!postInfo) return "";
