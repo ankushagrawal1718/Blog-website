@@ -13,7 +13,7 @@ const uploadMiddleware = multer({ dest: "uploads/",limits:{fieldSize: 25 * 1024 
 const fs = require("fs");
  
 const salt = bcrypt.genSaltSync(10);
-const secret = process.env.SECRET_KEY;
+const secret = process.env.SECRET_KEY; 
 
 app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
@@ -72,7 +72,7 @@ app.get("/profile", (req, res) => {
     if (err) throw err;
     res.json(info);
   });
-});  
+});
  
 app.post('/logout', (req,res) => {
   // res.send("hello i am working");
@@ -151,6 +151,8 @@ app.get("/post/:id", async (req, res) => {
   const postDoc = await Post.findById(id).populate("author", ["username"]);
   res.json(postDoc);
 });
+
+
 
 app.listen(PORT, () => {
   console.log(`Our blog app is listening to port ${PORT}`);
