@@ -14,8 +14,13 @@ const PostPage = () => {
     fetch(`http://localhost:4000/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
+<<<<<<< HEAD
       }); 
     }); 
+=======
+      });
+    });
+>>>>>>> parent of c91e3c8 (added some basic change)
   }, []);
   if (!postInfo) return "";
   return (

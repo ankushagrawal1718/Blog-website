@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const uploadMiddleware = multer({ dest: "uploads/",limits:{fieldSize: 25 * 1024 * 1024} } );
 const fs = require("fs");
- 
+
 const salt = bcrypt.genSaltSync(10);
 const secret = process.env.SECRET_KEY; 
 
@@ -58,9 +58,9 @@ app.post("/login", async (req, res) => {
         res.cookie("token", token).json({
           id: userDoc._id,
           username,
-        }); 
+        });
       });
-    } else {  
+    } else {
       res.status(400).json("wrong credentials.Plz try again later");
     }
   }
@@ -68,16 +68,14 @@ app.post("/login", async (req, res) => {
 
 app.get("/profile", (req, res) => {
   const { token } = req.cookies;
-  jwt.verify(token, secret,{}, (err, info) => {
+  jwt.verify(token, secret, {}, (err, info) => {
     if (err) throw err;
     res.json(info);
   });
-});
+});  
  
 app.post('/logout', (req,res) => {
-  // res.send("hello i am working");
   res.cookie('token', '').json('ok');
-  
 });
 
 app.post("/post", uploadMiddleware.single("file"), async (req, res) => {
@@ -126,7 +124,7 @@ app.put('/post',uploadMiddleware.single("file"),async(req,res)=>{
             return res.status(400).json('You are not the author');   
         }
         await postDoc.updateOne({
-            title, 
+            title,
             summary,
             content,
             cover:newPath?newPath :postDoc.cover,
@@ -146,8 +144,7 @@ app.get("/post", async (req, res) => {
 });
 
 app.get("/post/:id", async (req, res) => {
-  // console.log("yeah hello");
-  const { id } = req.params;  
+  const { id } = req.params;
   const postDoc = await Post.findById(id).populate("author", ["username"]);
   res.json(postDoc);
 });
@@ -159,4 +156,4 @@ app.listen(PORT, () => {
 });
 
 // mongodb+srv://mernblog:78sc92j5ruWAn2R3@cluster0.sfqglpn.mongodb.net/
-   
+  
