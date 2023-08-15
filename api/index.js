@@ -14,8 +14,9 @@ const fs = require("fs");
 
 const salt = bcrypt.genSaltSync(10);
 const secret = process.env.SECRET_KEY; 
+const BASE_URL = process.env.BASE_URL;
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(cors({ credentials: true, origin: `${BASE_URL}` }));
 app.use(express.json());
 app.use(cookieParser());
 
@@ -155,5 +156,4 @@ app.listen(PORT, () => {
   console.log(`Our blog app is listening to port ${PORT}`);
 });
 
-// mongodb+srv://mernblog:78sc92j5ruWAn2R3@cluster0.sfqglpn.mongodb.net/
   

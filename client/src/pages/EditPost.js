@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import Editor from '../Editor';
+import { BASE_URL } from '../backendUrl';
 
 const EditPost = () => {
     const {id} = useParams();
@@ -13,7 +14,7 @@ const EditPost = () => {
     const [redirect,setRedirect] = useState(false);
 
     useEffect(()=>{
-        fetch('http://localhost:4000/post/'+id)
+        fetch(BASE_URL+'/post/'+id)
         .then(response=>{
             response.json().then(postInfo=>{
                 setTitle(postInfo.title);
@@ -34,7 +35,7 @@ const EditPost = () => {
             data.set('file',files?.[0]);
         }
         
-    const response =    await fetch('http://localhost:4000/post',{
+    const response = await fetch(BASE_URL+'/post',{
             method:'PUT',
             body:data,
             credentials:'include',

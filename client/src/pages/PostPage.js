@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { UserContext } from "../userContext";
 import {Link} from "react-router-dom";
 // import {response} from {express}
+import { BASE_URL } from "../backendUrl";
 
 const PostPage = () => {
   const [postInfo, setPostInfo] = useState(null);
@@ -11,16 +12,11 @@ const PostPage = () => {
   const { id } = useParams();
   useEffect(() => {
         console.log("hello i am clicked!!")
-    fetch(`http://localhost:4000/post/${id}`).then((response) => {
+    fetch(BASE_URL+`/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
-<<<<<<< HEAD
-      }); 
-    }); 
-=======
       });
     });
->>>>>>> parent of c91e3c8 (added some basic change)
   }, []);
   if (!postInfo) return "";
   return (
@@ -50,7 +46,7 @@ const PostPage = () => {
         </div>
       )}
       <div className="image">
-        <img src={`http://localhost:4000/${postInfo.cover}`} alt="" />
+        <img src={BASE_URL+`/${postInfo.cover}`} alt="" />
       </div>
       <div dangerouslySetInnerHTML={{ __html: postInfo.content }}></div>
     </div>

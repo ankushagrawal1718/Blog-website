@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { UserContext } from '../userContext';
+import { BASE_URL } from '../backendUrl';
 
 
 const LoginPage = () => {
@@ -11,7 +12,7 @@ const LoginPage = () => {
 
  async function login(ev){
     ev.preventDefault();
-  const response =  await fetch('http://localhost:4000/login',{
+  const response =  await fetch(BASE_URL+'/login',{
       method:'POST',
       body: JSON.stringify({username,password}),
       headers: {'Content-Type':'application/json'},
